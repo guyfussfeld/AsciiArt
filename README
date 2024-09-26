@@ -1,5 +1,12 @@
-arie_levental,guyfussfeld
-319142055,207766973
+usage instructions:
+1.exit - exit the program
+2.chars - look at the current chars
+3.add a/a-m/m-a/all/space (where a and m can be replace with any other chars) - adding chars to the set
+4.remove a/a-m/m-a/all/space (where a and m can be replace with any other chars) - removing chars from the set
+5.res up/down/blank (when using blank you will get the current res) - changing the res of the picture
+6.image xxx.jpeg - choose a picture
+7.output console/html - where to output the result
+8.asciiArt - running the algorithm on the current parameters
 
 Answers (Q&A):
 
@@ -125,13 +132,3 @@ Q. If you made changes to the code of the classes provided to you,
    Do not make changes to the code of the classes in the output_ascii package as this package is not provided!
 
 A. N/A.
-
-usage instructions:
-1.exit - exit the program
-2.chars - look at the current chars
-3.add a/a-m/m-a/all/space (where a and m can be replace with any other chars) - adding chars to the set
-4.remove a/a-m/m-a/all/space (where a and m can be replace with any other chars) - removing chars from the set
-5.res up/down/blank (when using blank you will get the current res) - changing the res of the picture
-6.image xxx.jpeg - choose a picture
-7.output console/html - where to output the result
-8.asciiArt - running the algorithm on the current parameters
