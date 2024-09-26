@@ -1,0 +1,127 @@
+arie_levental,guyfussfeld
+319142055,207766973
+
+Answers (Q&A):
+
+Q. According to the UML diagram of the code you created,
+   briefly explain the role of each class in your code and the relationships between the classes.
+
+A.  Classes and Roles:
+        - Shell: This class acts as the central coordinator for the program. It handles user interaction,
+                 manages displaying output (potentially through the AsciiOutput interface), and controls the
+                 image processing through methods like setOutput and setImage.
+        - AsciiArtAlgorithm: Core component responsible for converting an image into ASCII art using a
+                             specified character set and resolution. It encapsulates the entire process of
+                             transforming image data into a visually comprehensible text format that
+                             represents the original image.
+        - SubimgCharMatcher: This class is responsible for matching characters within sub-images. It offers
+                             methods to access current matching characters, add new characters for matching,
+                             and calculate the brightness of a character for comparison.
+        - CharConverter: This class handles the conversion of characters into a format suitable for comparison
+                         with image data. It has a method for converting a character into a boolean array
+                         (representing on/off pixels).
+        - Image: This class represents an image object, storing the image data and providing methods to access
+                 its width and height, with a method for saving the image itself.
+        - ImageUtils: This class serves as a utility class for image processing tasks. It provides methods for
+                      padding the image, dividing the image into smaller partitions and calculate its
+                      brightness.
+    Relationships:
+        - Shell:
+            * Uses KeyboardInput to gather user input and commands.
+            * Invokes methods of AsciiArtAlgorithm to convert images into ASCII art.
+            * Determines the output format (console or HTML) by interacting with implementations of
+              AsciiOutput.
+            * Catching and handling various exceptions (hence uses the exception classes).
+            * Uses Image class to initilize images.
+            * Uses SubimgCharMatcher to maintain the current set of usable chars.
+        - AsciiArtAlgorithm:
+            * Uses ImageUtils to pad and partition the image into smaller sections suitable for ASCII art
+              conversion.
+            * Uses SubImgCharMatcher to map image brightness values to ASCII chars based on the provided chars
+              set.
+            * Processes the Image object, accessing its properties and modifying it as needed for conversion.
+        - SubimgCharMatcher:
+            * Utilizes CharConverter to transform characters into a format suitable for brightness matching.
+        - ImageUtils:
+            * Provides essential functions for *Image* padding, partitioning, and brightness calculation.
+
+Q. Briefly explain for each Java data structure you used in the code,
+   where you used it and why you specifically chose this data structure for the task.
+   Address considerations regarding runtime complexity and memory.
+
+A.
+    - TreeMap<Double, TreeSet<Character>> charBrightnessSortedMap
+        * Brief explanation:
+            Used in SubImgCharMatcher Class to maintain the current set of useable chars with the respected
+            brightnesses.
+            We chose this data structure becasue this way we can access the nearest brightness value (the
+            Double key) by taking advantage of the sorted order, and using binary search.
+            Also, using the sorted order we can access the min and max brightness values efficently, in order
+            to calculate the newCharBrightness formula.
+            The chars that shares the same brightness value are also sorted by their ASCII values
+            in order to access the lowest ASCII value if there are multiple options.
+            This way, we believed the runtime complexity and memory using this data strcture are ideal for our
+            needs, and will improve the overall preformance of the program.
+        * Runtime Complexity:
+            + Access: O(log(N)) (to find the closeset value and the first item in the matching set)
+            + Removal: O(log(N)) (two binary searches and tree maintainance if needed)
+            + Insertion: O(log(N)) (insertion using the tree map and set methods, tree maintainance if needed)
+        * Memory:
+            + O(N) (maximum one node and one inner set for each value)
+
+    - TreeSet<Character> currChars
+        * Brief explanation:
+            Used in SubImgCharMatcher Class to maintain the current set of allowed and useable chars.
+            We chose this data structure becasue this way we can return all of the useable chars for the ASCII
+            art, in sorted order, as requested.
+            We added this data structure (and haven't used the first one) because this way the time complexity
+            for the requested data is O(1), while using the tree will demand going through all nodes, O(n).
+            This way, we believed the runtime complexity and memory using this data strcture are ideal for our
+            needs, and will improve the overall preformance of the program.
+        * Runtime Complexity:
+            + Use-case: O(1) (we return the full set, not individual items)
+            + Removal: O(log(N)) (TreeSet method)
+            + Insertion: O(log(N)) (TreeSet method)
+        * Memory:
+            + O(N) (Simple TreeSet)
+
+    - HashMap<Character, Double> brightnessCalcs
+        * Brief explanation:
+            Used in SubImgCharMatcher Class to store the brightness calculation for each character.
+            We added this data structure becasue this way we dont need to calculate chars we have seen before,
+            and if we haven't seen a char before we know not to look for it in the other data structures.
+            We chose this data structure to allow preforming those search quickly and efficently and to avoid
+            repeating calculations or searches.
+            Becasue of that, we believed the runtime complexity and memory using this data strcture are ideal
+            for our needs, and will improve the overall preformance of the program.
+        * Runtime Complexity:
+            + Access, Removal and Insertion: O(1) in average (HashMap methods)
+        * Memory:
+            + O(N) on average (Simple HashMap)
+
+Q. Explain how you used Java's exception handling mechanism to handle user input errors and print error msgs.
+
+A. we created 4 new Exception classes:
+    - FormatExcepion
+    - InvalidImagePathException
+    - MinCharSetException
+    - ResOutOfBoundException
+   Within the run method's try block, each of these exceptions is thrown when its corresponding error
+   condition occurs. Subsequently, we use catch blocks to handle these exceptions.
+   Upon catching an exception, we utilize a print method defined within each exception class to
+   output detailed error messages as per the project requirements.
+   This structured approach ensures that each type of user input error is appropriately identified, handled,
+   and reported through custom exception classes, enhancing the clarity and maintainability of our code.
+
+Q. If you made changes to the API of the SubImgCharMatcher class,
+   explain why these changes were necessary in the code.
+
+A. We added one public method to the API, `public char[] getCurrChars()`, which returns the current set of
+   allowed and useable chars in sorted order. This method is needed by the 'Chars' command in the Shell class,
+   and the sorted order is requested (by the instructions).
+
+Q. If you made changes to the code of the classes provided to you,
+   explain the changes and why they were necessary.
+   Do not make changes to the code of the classes in the output_ascii package as this package is not provided!
+
+A. N/A.
