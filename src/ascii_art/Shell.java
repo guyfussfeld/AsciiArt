@@ -19,7 +19,7 @@ import java.io.IOException;
 public class Shell {
 
     // Default values
-    private static final String DEFAULT_IMAGE_PATH = "cat.jpeg";
+    private static final String DEFAULT_IMAGE_PATH = "lemur.jpeg";
     private static final char[] DEFAULT_CHARSET = {'1', '0', '2', '3', '4', '5', '6', '7', '8', '9'};
     private static final int DEFAULT_RESOLUTION = 128;
     private static final String DEFAULT_OUTPUT_FILE = "out.html";
