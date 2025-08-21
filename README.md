@@ -3,9 +3,9 @@
 A Java program that transforms pictures into ASCII characters.  
 Includes an interactive shell with commands to configure resolution, character set, and output format.
 
-
 ![lemur](lemur.jpeg)
-
+![lemur](ascii.jpeg)
+![lemur](zoom.jpeg)
 
 ## 📖 Usage Instructions
 
