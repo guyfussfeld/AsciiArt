@@ -1,7 +1,6 @@
 # ASCII Art Converter
 
 A Java program that transforms pictures into ASCII characters.  
-Includes an interactive shell with commands to configure resolution, character set, and output format.
 
 <p float="left">
   <img src="images/lemur.jpeg" width="400" height="300"/>
