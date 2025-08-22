@@ -1,4 +1,4 @@
-package ascii_art;
+package main;
 
 import ascii_art.exceptions.FormatException;
 import ascii_art.exceptions.InvalidImagePathException;
@@ -9,6 +9,8 @@ import ascii_output.ConsoleAsciiOutput;
 import ascii_output.HtmlAsciiOutput;
 import image.Image;
 import image_char_matching.SubImgCharMatcher;
+import ascii_art.AsciiArtAlgorithm;
+import ascii_art.KeyboardInput;
 
 import java.io.IOException;
 
